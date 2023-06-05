@@ -2,8 +2,9 @@
 import 'package:flutter/material.dart';
 
 // Package imports:
-import 'package:carousel_slider/carousel_slider.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+//import 'package:carousel_slider/carousel_slider.dart';
+//import 'package:flutter_svg/flutter_svg.dart';
+//import 'package:image/image.dart';
 
 void main() {
   runApp(const MyApp());
@@ -12,168 +13,98 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // Try running your application with "flutter run". You'll see the
-        // application has a blue toolbar. Then, without quitting the app, try
-        // changing the primarySwatch below to Colors.green and then invoke
-        // "hot reload" (press "r" in the console where you ran "flutter run",
-        // or simply save your changes to "hot reload" in a Flutter IDE).
-        // Notice that the counter didn't reset back to zero; the application
-        // is not restarted.
         primarySwatch: Colors.green,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const MyHomePage(title: 'Homework'),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
-
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
-
   final String title;
-
-  
-
 
   @override
   State<MyHomePage> createState() => _MyHomePageState();
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  //int _counter = 0;
-
-  final List<String> images = [
-    'assets/images/cat.jpg',
-    'assets/images/cat2.jpg',
-    'assets/images/cat3.jpg',
-    'assets/images/explosion.jpg',
-    'assets/images/ball.jpg'
+  static const List<Tab> nav = <Tab>[
+    Tab(text: 'Мои фото'),
+    Tab(text: 'Галерея'),
   ];
 
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      // _counter++;
-    });
+  Map<String, dynamic> data = {
+    'Мои фото': [
+      'https://i.playground.ru/p/b3maElnqbqKML4iPxGJ3_g.jpeg',
+      'https://assets.change.org/photos/8/yu/hu/GuYuhumfnTiWegH-1600x900-noPad.jpg?1484048650',
+      'https://bookflow.ru/wp-content/uploads/2022/10/102-zadachi-na-logiku-smekalku-i-soobrazitelnost-s-otvetami.jpg',
+      'https://media.24h.tv/img/f6/d0/f6d01421e497558a10a8e37426cb7299.jpeg?w=1080',
+      'https://www.youmeg.com/wp-content/uploads/2021/12/IMG_20211211_152318.jpg',
+      'https://cartacuentos.es/wp-content/uploads/2019/11/lectura-y-fracaso-escolar.jpg',
+      'https://media.24h.tv/img/3b/31/3b31c48f543ba3dd29bff1eafeda2cec.jpeg?w=1080',
+      'https://i.pinimg.com/originals/6a/82/5b/6a825b59802fcb905c6aeba134a0f5e2.jpg',
+      'https://cdn-ru.bitrix24.kz/b3421115/landing/61d/61d8ea499d36f5cf0251df55c03a3d98/Oplata_kartoy_new_2x.jpg',
+      'https://avatars.dzeninfra.ru/get-zen_brief/7227031/pub_62bfbeb86437692bc851aa84_62bfbef98891784cf0a83cc3/scale_1200',
+    ],
+    'Галерея': [
+      'https://assets.change.org/photos/4/wt/tn/CkwTtNSQJikfOgy-1600x900-noPad.jpg?1610301677',
+      'https://translationoutlet.com/blog/wp-content/uploads/2020/11/traducciones-tecnicas-20201103-01.jpg',
+      'https://cdn-ru.bitrix24.ru/b10485279/landing/35b/35baf8d3242733da8f32fbae67e3db98/testirovshchik_gr_kaver_2x.png',
+      'https://gazeta13.ru/data/photo/103118_040335059297.jpg',
+      'https://cdn-ru.bitrix24.ru/b18208716/landing/5d0/5d05906253bfefccaddc6ef0155122f7/Group_isk_sud_2x.jpg',
+      'https://sun9-41.userapi.com/impf/6fMe9YrwPfALSRaf-H3aI3XWBjzd56ZC3fda0g/oWICZ6IN-54.jpg?size=1280x800&quality=96&sign=b7f861645da9c7305f1dc73b11bf8e87&c_uniq_tag=dZ7Xt7WzCU_AmBziZGoXrDZObSByg-1yH0l9m67McMM&type=album',
+      'https://sun9-29.userapi.com/impg/caPQB_rXMrBIYd5eWrYyZ6l6QD9r0xPHN3xAdA/T_PakpJgOGc.jpg?size=1080x607&quality=96&sign=bc31d18813f3a61441c272fe2a9938d3&c_uniq_tag=3TkRCrX7X7rfJZkKAfNaHCfzY1m85vOKKkWfV66cWiE&type=album',
+      'https://sun9-28.userapi.com/impg/kXmCJ2yDwM7z9s1rSDzrfGfsU7kE8WfL_iLJgw/Kr9iS70eMfw.jpg?size=1080x607&quality=96&sign=4f637f2727c533207fa4b3acb25f48cf&c_uniq_tag=P4EBC3zqtwT9h65Elew5F7gSPgkw8IFtzF6D4VgLDwQ&type=album',
+      'https://www.mingre.com/wp-content/uploads/2018/09/61d12c7e5e4146f8ee0c799a36b32d6f.jpg',
+      'https://cdn.wallpaperinhd.net/wp-content/uploads/2018/11/06/Michael-Jordan-Wallpaper-32.jpg',
+    ]
+  };
+
+  List pictures(tab) {
+    List newlist = [];
+
+    for (final MapEntry<String, dynamic> element in data.entries) {
+      if (element.key == tab) {
+        for (final values in element.value) {
+          newlist.add(values);
+        }
+      }
+    }
+    return newlist;
   }
 
   @override
   Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
-    final String assetName;
-    return Scaffold(
-      appBar: AppBar(
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
-      ),
-      body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
-        child: Column(
-          // Column is also a layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Invoke "debug painting" (press "p" in the console, choose the
-          // "Toggle Debug Paint" action from the Flutter Inspector in Android
-          // Studio, or the "Toggle Debug Paint" command in Visual Studio Code)
-          // to see the wireframe for each widget.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            SvgPicture.asset(
-              'assets/images/flutter_logo.svg',
-              semanticsLabel: 'SVG from assets folder',
-            ),
-            SvgPicture.network(
-              'https://www.svgrepo.com/show/513266/bank.svg',
-              semanticsLabel: 'SVG from web',
-            ),
-            CarouselSlider(
-              options: CarouselOptions(height: 400.0),
-              items: [1, 2, 3, 4, 5].map((i) {
-                return Builder(
-                  builder: (BuildContext context) {
-                    return Container(
-                      width: MediaQuery.of(context).size.width,
-                      margin: EdgeInsets.symmetric(horizontal: 5.0),
-                      decoration: BoxDecoration(
-                          color: Color.fromARGB(255, 255, 255, 255)),
-                      child: Image.asset(images[i - 1]),
-                    );
-                  },
-                );
-              }).toList(),
-            ),
-/*
-            Container(
-              height: 300,
-              decoration: BoxDecoration(
-                color: Colors.blue,
-              ),
-            ),
-            const Text.rich(
-              TextSpan(
-                  style: TextStyle(
-                    color: Colors.green,
-                    fontFamily: 'Comfortaa',
-                    fontSize: 20,
-                    fontWeight: FontWeight.w800,
-                  ),
-                  children: [
-                    TextSpan(text: 'Some text'),
-                    TextSpan(
-                        text: 'Other text',
-                        style: TextStyle(color: Colors.red)),
-                  ]),
-            ),
-            const Text(
-              'You have pushed the button this many times:',
-              style: TextStyle(
-                fontFamily: 'Comfortaa',
-                fontSize: 15,
-              ),
-            ),
-            Text(
-              '$_counter',
-              style: TextStyle(
-                fontFamily: 'Comfortaa',
-                fontSize: 20,
-              ),
-            ),
-            */
-          ],
+    return DefaultTabController(
+      length: nav.length,
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text(widget.title),
+          bottom: const TabBar(
+            tabs: nav,
+          ),
+        ),
+        body: TabBarView(
+          children: nav.map((Tab tab) {
+            return ListView.builder(
+                key: PageStorageKey(tab),
+                itemCount: pictures(tab.text).length,
+                itemBuilder: (BuildContext context, int index) {
+                  return Container(
+                    child: Column(
+                      children: [
+                        Image.network(pictures(tab.text)[index].toString())
+                      ],
+                    ),
+                  );
+                });
+          }).toList(),
         ),
       ),
     );

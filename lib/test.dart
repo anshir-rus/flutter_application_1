@@ -1,6 +1,4 @@
-void main() {
-  print('Hello, World!');
-}
+void main() {}
 
 String sayHello() {
   return ('Hello!');

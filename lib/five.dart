@@ -66,7 +66,6 @@ class _MyHomePageState extends State<MyHomePage> {
     ]
   };
 
-/*
   List pictures(tab) {
     List newlist = [];
 
@@ -79,36 +78,48 @@ class _MyHomePageState extends State<MyHomePage> {
     }
     return newlist;
   }
-*/
 
   @override
+  @override
   Widget build(BuildContext context) {
-    return DefaultTabController(
-      length: nav.length,
-      child: Scaffold(
-        appBar: AppBar(
-          title: Text(widget.title),
-          bottom: const TabBar(
-            tabs: nav,
-          ),
-        ),
-        body: TabBarView(
-          children: nav.map((Tab tab) {
-            return ListView.builder(
-                key: PageStorageKey(tab),
-                //  itemCount: pictures(tab.text).length,
-                itemCount: int.tryParse(data[tab.text].length.toString()),
-                itemBuilder: (BuildContext context, int index) {
-                  return Container(
-                    child: Column(
-                      children: [
-                        // Image.network(pictures(tab.text)[index].toString())
-                        Image.network(data[tab.text][index].toString())
-                      ],
-                    ),
-                  );
-                });
-          }).toList(),
+    return Scaffold(
+      appBar: AppBar(title: Text("title")),
+      body: const Center(
+        child: Text('My Page!'),
+      ),
+      drawer: Drawer(
+        // Add a ListView to the drawer. This ensures the user can scroll
+        // through the options in the drawer if there isn't enough vertical
+        // space to fit everything.
+        child: ListView(
+          // Important: Remove any padding from the ListView.
+
+          children: [
+            const DrawerHeader(
+              decoration: BoxDecoration(
+                color: Colors.blue,
+              ),
+              child: Text('Drawer Header'),
+            ),
+            ListTile(
+              title: const Text('Item 1'),
+              onTap: () {
+                // Update the state of the app
+                // ...
+                // Then close the drawer
+                Navigator.pop(context);
+              },
+            ),
+            ListTile(
+              title: const Text('Item 2'),
+              onTap: () {
+                // Update the state of the app
+                // ...
+                // Then close the drawer
+                Navigator.pop(context);
+              },
+            ),
+          ],
         ),
       ),
     );
